@@ -1,3 +1,19 @@
 .App {
   text-align: center;
 }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.666;
+  background: #87cbd3;
+  align-content: center;
+}
+h1{
+  margin: 10px auto;
+  font-weight: 900;
+  color: aqua;
+}
+
+p{
+  font-weight: bold;
+}

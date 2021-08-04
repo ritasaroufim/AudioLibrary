@@ -1,0 +1,41 @@
+.Card{
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+  text-align: center;
+  max-width: 20rem;
+  margin: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 2px #aaa4a4;
+
+}
+
+.Card .title{
+  font-weight: 900;
+  font-size: 200%;
+}
+
+.Card .description{  
+  font-weight: 900;
+}
+.Card .image img{
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.Card .tracks{
+  font-weight: 900;
+}
+.btnToggle{
+  background-color: #fff;
+  border-radius: 20px;
+  border: none;
+  padding: 6px;
+  margin: 10px auto;
+}
+.btn:hover{
+  background-color: #cac5c5;
+  color: white;
+}
