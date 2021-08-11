@@ -2,36 +2,36 @@ import React from 'react';
 import classes from './Input.css';
 
 
-const input = (props) => {
+const input = ({ invalid, touched, elementType, value, elementConfig, changed, label, message }) => {
 
-    let inputElement = null;
     const inputClasses = [classes.InputElement];
+    let inputElement = <input className={inputClasses.join(' ')}  {...elementConfig} value={value} onChange={changed} />;
 
-    if(props.invalid && props.touched){
+    if (invalid && touched) {
         inputClasses.push(classes.Invalid);
     }
 
-    switch (props.elementType) {
+    switch (elementType) {
         case ('input'):
-            inputElement = <input className = {inputClasses.join(' ')}  {...props.elementConfig}  value={props.value} onChange={props.changed} />;
+            inputElement = <input className={inputClasses.join(' ')}  {...elementConfig} value={value} onChange={changed} />;
             break;
         case ('textarea'):
-            inputElement = <textarea className = {inputClasses.join(' ')} {...props.elementConfig} value={props.value} onChange={props.changed} />;
+            inputElement = <textarea className={inputClasses.join(' ')} {...elementConfig} value={value} onChange={changed} />;
             break;
 
         default:
-            inputElement = <input  className = {inputClasses.join(' ')}  {...props.elementConfig} value={props.value} onChange={props.changed} />;
+            inputElement;
     }
 
 
 
-return (
-    <div className = {classes.Input}>
-        <label className={classes.Label}>{props.label}</label>
-        {inputElement}
-        <label className={classes.Message}> {props.message}</label>
-    </div>
-)
+    return (
+        <div className={classes.Input}>
+            <label className={classes.Label}>{label}</label>
+            {inputElement}
+            <label className={classes.Message}> {message}</label>
+        </div>
+    )
 
 }
 

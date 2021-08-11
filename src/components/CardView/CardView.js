@@ -3,22 +3,13 @@ import classes from "./CardView.css"
 
 
 
-const cardView = (props) => {
+const cardView = ({name, imageUrl,description,nbOfTracks, clicked}) => {
   return (
-    // <div className={classes.Card} onClick={props.clicked}>
-    //   <div className={classes.CardImg}>
-    //     <img src={props.imageUrl} alt='img' />
-    //   </div>
-    //   <div><h2>{props.name}</h2></div>
-    //   <div><p>{props.description}</p></div>
-    //   {props.nbOfTracks && <div><p>{props.nbOfTracks}</p></div>}
-    // </div>
-
-    <div className={classes.Card}>
-      <div className={classes.title}> {props.name}</div>
-      <div className={classes.image}> <img src={props.imageUrl} /> </div>
-      <div className={classes.description}> {props.description}</div>
-      {props.nbOfTracks && <div className={classes.tracks}>{props.nbOfTracks}</div>}
+    <div className={classes.Card} onClick={clicked}>
+      <div className={classes.title}> {name}</div>
+      <div className={classes.image}> <img src={imageUrl} alt="img" /> </div>
+      <div className={classes.description}> {description}</div>
+      {nbOfTracks && <div className={classes.tracks}>{nbOfTracks}</div>}
     </div>
 
   );

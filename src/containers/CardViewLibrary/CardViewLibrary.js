@@ -1,51 +1,80 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardView from '../../components/CardView/CardView';
-import cardViewData from '../../cardViewData';
+// import cardViewJSONData from '../../cardViewData';
 import classes from '../../components/CardView/CardView.css'
+//import axios from '../../axios-albums';
+import axios from 'axios';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import { Link } from 'react-router-dom';
+
+const cardViewLibrary = () => {
+
+  const [cardViewData, setcardViewData] = useState(null);
+  const [showNbOfTracks, setshowNbOfTracks] = useState(true);
+  const [selectedCardId, setselectedCardId] = useState(null);
+  // state = {
+  //   cardViewData: null,
+  //   //showNbOfTracks: true,
+  //   selectedCardId: null
+  // }
+  // const toggleDataHandler = () => {
+  //   setshowNbOfTracks((prevState) => {
+  //     return { ...prevState, showNbOfTracks: !prevState.showNbOfTracks }
+  //   })
+  // }
+
+  const toggleDataHandler = () => {
+    setshowNbOfTracks(!showNbOfTracks);
+  }
 
 
-class CardViewLibrary extends Component {
-  state = {
-    cardViewData,
-    showNbOfTracks: true,
-    selectedCardId: null
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/photos')
+      .then(response => {
+        setcardViewData(response.data)
+        console.log(response.data);
+      });
+  },[])
+
+  const cardViewSelectedHandler = (id) => {
+    setselectedCardId(id);
 
   }
-  toggleDataHandler = () => {
-    this.setState((prevState) => {
-      return { ...prevState, showNbOfTracks: !prevState.showNbOfTracks }
-    })
-  }
-
-
-  render() {
+  
+    //const { cardViewData } = this.state
     return (
       <div>
         <div>
-          <button className={classes.btnToggle} onClick={this.toggleDataHandler}>Toggle Tracks</button>
+          <button className={classes.btnToggle} onClick={toggleDataHandler}>Toggle Tracks</button>
         </div>
         <div>
-          {cardViewData.map((album) => {
-            // console.log("map", album);
-            return (
-
-              <CardView
-                key={album._id}
-                imageUrl={album.imageUrl}
-                name={album.name}
-                description={album.description}
-                nbOfTracks={this.state.showNbOfTracks ? album.nbOfTracks : null}
-              />
-
-            );
-          })}
+          {
+            cardViewData ? (
+              cardViewData.map(album => (
+                // console.log("map", album);
+                (<Link to={'/' + album.id} key={album.id}>
+                  <CardView
+                    imageUrl={album.url}
+                    name={album.title.slice(0,10)}
+                    description={album.title.slice(0,30)}
+                    nbOfTracks={showNbOfTracks ? album.albumId : null}
+                    clicked={() => cardViewSelectedHandler(album.id)}
+                  />
+                </Link>)
+              ))
+            ) :
+              (<Spinner />)
+          }
         </div>
+        {/* <div>
+          <FullCard id={this.state.selectedCardId} />
+        </div> */}
       </div>
 
 
     )
-  }
+  
 
 }
 
-export default CardViewLibrary;
+export default cardViewLibrary;

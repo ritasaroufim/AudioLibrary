@@ -25,9 +25,11 @@
   margin-right: auto;
   width: 100%;
 }
+
 .Card .tracks{
   font-weight: 900;
 }
+
 .btnToggle{
   background-color: #fff;
   border-radius: 20px;

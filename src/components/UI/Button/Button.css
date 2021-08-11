@@ -16,7 +16,11 @@
 }
 
 .Success {
-    color: rgb(31, 28, 184);
+    color:#fff;
+    background-color:rgb(31, 28, 184);
+    border: none;
+    padding: 6px;
+    margin: 10px auto;
 }
 
 .Danger {
@@ -27,4 +31,8 @@
 .Button:disabled {
     color: rgb(121, 118, 118);
     cursor: not-allowed;
+    background-color: #fff;
+    border: none;
+    padding: 6px;
+    margin: 10px auto;
 }
