@@ -29,7 +29,7 @@ const cardViewLibrary = () => {
 
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/photos')
+    axios.get('https://jsonplaceholder.typicode.com/photos?_limit=20')
       .then(response => {
         setcardViewData(response.data)
         console.log(response.data);
